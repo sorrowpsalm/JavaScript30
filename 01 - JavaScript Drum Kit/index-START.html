@@ -58,8 +58,7 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener("keydown",function(e) {
-    
+  function playaudio(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
     
@@ -72,19 +71,18 @@
     else{
       return;
     }
+  }
+
     //function for removing the transition
-    function endTransition(e) {
-      if(e.propertyName !== 'tranform'){
-       //skipping if it isnt a transform
-       this.classList.remove("playing"); //removing at the end of the animation
-      }
-    }
+  function endTransition(e) {
+    if(e.propertyName !== 'tranform'){ return; }
+      //skipping if it isnt a transform
+      this.classList.remove("playing"); //removing at the end of the animation
+  }
 
-    const keys = document.querySelectorAll('.key');
-    keys.forEach(key => key.addEventListener('transitionend', endTransition));
-    
-  });
-
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', endTransition));
+  window.addEventListener('keydown',playaudio);
 
 </script>
 
