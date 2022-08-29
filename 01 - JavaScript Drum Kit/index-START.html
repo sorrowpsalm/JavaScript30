@@ -75,7 +75,8 @@
     //function for removing the transition
     function endTransition(e) {
       if(e.propertyName !== 'tranform'){
-        return; //skipping if it isnt a transform
+       //skipping if it isnt a transform
+       this.classList.remove("playing"); //removing at the end of the animation
       }
     }
 
