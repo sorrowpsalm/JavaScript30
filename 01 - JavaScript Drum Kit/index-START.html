@@ -73,13 +73,13 @@
     }
   }
 
-    //function for removing the transition
+  //function for removing the transition
   function endTransition(e) {
-    if(e.propertyName !== 'tranform'){ return; }
+    if(e.propertyName !== 'tranform'){
       //skipping if it isnt a transform
       this.classList.remove("playing"); //removing at the end of the animation
+    }
   }
-
   const keys = document.querySelectorAll('.key');
   keys.forEach(key => key.addEventListener('transitionend', endTransition));
   window.addEventListener('keydown',playaudio);
