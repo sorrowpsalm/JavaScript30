@@ -62,12 +62,30 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform:rotate(90deg);
+      transform-origin: 100%;
+      transition: all 0.04s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
   </style>
 
   <script>
+    const secondhand = document.querySelector('.second-hand')
 
+    function setDate(){
+      const date = new Date();
+      const second = date.getDate();
+      console.log(second)
+
+      //for converting the seconds into an offser for turning around the clock face.
+      //the next 90 degrees is for accomodating the offser applied during the transform
+      const secondsdegrees = ((second / 60) * 360 ) + (90);
+      secondhand.style.transform = `rotate(${secondsdegrees}deg)`;
+
+    }
+
+    setInterval(setDate,1000)
 
   </script>
 </body>
