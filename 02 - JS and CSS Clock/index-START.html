@@ -37,7 +37,7 @@
     .clock {
       width: 30rem;
       height: 30rem;
-      border: 20px solid white;
+      border: 20px solid teal;
       border-radius: 50%;
       margin: 50px auto;
       position: relative;
@@ -68,21 +68,34 @@
       transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
+    .second-hand{
+      background-color: yellow;
+    }
+
   </style>
 
   <script>
     const secondhand = document.querySelector('.second-hand')
+    const hourhand = document.querySelector(".hour-hand");
+    const minuteHand = document.querySelector('.min-hand');
 
     function setDate(){
       const date = new Date();
-      const second = date.getDate();
-      console.log(second)
 
+      const second = date.getSeconds();
       //for converting the seconds into an offser for turning around the clock face.
       //the next 90 degrees is for accomodating the offser applied during the transform
-      const secondsdegrees = ((second / 60) * 360 ) + (90);
-      secondhand.style.transform = `rotate(${secondsdegrees}deg)`;
+      const secondsdegrees = ((second / 60) * 360 ) + 90;
+      
+      const minute = date.getMinutes();
+      const minutedegrees = ((minute / 60) * 360 ) + 90;
 
+      const hour = date.getHours();
+      const hourdegrees = ((hour/12) *360) + 90;
+
+      secondhand.style.transform = `rotate(${secondsdegrees}deg)`;
+      minuteHand.style.transform = `rotate(${minutedegrees}deg)`;
+      hourhand.style.transform = `rotate(${hourdegrees}deg)`;
     }
 
     setInterval(setDate,1000)
